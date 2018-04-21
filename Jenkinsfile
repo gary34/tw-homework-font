@@ -8,7 +8,7 @@ pipeline {
       agent {
         docker {
             image 'node'
-            args '-u jenkins:root'
+            args '-u root:root'
             reuseNode true
         }
       }
