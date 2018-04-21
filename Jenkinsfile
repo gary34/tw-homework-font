@@ -43,8 +43,13 @@ pipeline {
       when {
         branch 'develop'
       }
+      agent {
+        docker {
+            image 'williamyeh/ansible'
+        }
+      }
       steps {
-        sh 'echo \'deploy to development\''
+        sh 'cd ansible && ansible-playbook -i hosts/development site.yml'
       }
     }
     stage('Deploy to Production') {
