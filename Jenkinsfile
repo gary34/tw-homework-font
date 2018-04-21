@@ -5,9 +5,6 @@ pipeline {
   }
   stages {
     stage('Build') {
-    if (env.BRANCH_NAME == 'master'){
-        environment name: 'API_URL', value: 'http://xxxxxxx.x.xx'
-      }
       agent {
         docker {
             image 'node'
@@ -15,8 +12,11 @@ pipeline {
         }
       }
       steps {
-         
- 
+        script {
+            if (env.BRANCH_NAME == 'master'){
+                environment name: 'API_URL', value: 'http://xxxxxxx.x.xx'
+            }
+        }
         sh 'npm install --loglevel=error'
         sh 'npm run build --loglevel=error' 
       }
