@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-      CODE_VERSION = sh('git rev-parse --short HEAD').trim()
+      CODE_VERSION = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
   }
   stages {
     stage('Build') {
