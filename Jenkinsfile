@@ -36,8 +36,9 @@ pipeline {
     }
     stage('Prepare Deploy') {
         steps {
-            sh 'if [ ! -d ansible ]; then git clone https://gitee.com/gary34/tw-homework-ansible.git ansible; else cd ansible && git pull origin master; fi'
-            sh 'cp packages/font-${CODE_VERSION}.tgz ansible/roles/front/files/'
+            // sh 'if [ ! -d ansible ]; then git clone https://gitee.com/gary34/tw-homework-ansible.git ansible; else cd ansible && git pull origin master; fi'
+            sh 'rm -rf tw-homework-ansible-master && wget https://github.com/gary34/tw-homework-ansible/archive/master.zip && unzip master.zip'
+            sh 'cp packages/font-${CODE_VERSION}.tgz tw-homework-ansible-master/roles/front/files/'
         }
     }
     stage('Deploy to Development') {
