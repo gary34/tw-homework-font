@@ -9,8 +9,8 @@ pipeline {
         }
       }
       steps {
-        sh 'npm install'
-        sh 'npm run build' 
+        sh 'npm install --loglevel=error'
+        sh 'npm run build --loglevel=error' 
       }
     }
     stage('Test') {
