@@ -57,7 +57,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh 'echo \'deploy to production\''
+        sh 'cd ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
       }
     }
   }
