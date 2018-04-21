@@ -35,7 +35,7 @@ pipeline {
     }
     stage('Prepare Deploy') {
         steps {
-            sh 'if [ ! -d ansible ]; then git clone https://gitee.com/gary34/tw-homework-ansible.git ansible; else git pull origin master; fi'
+            sh 'if [ ! -d ansible ]; then git clone https://gitee.com/gary34/tw-homework-ansible.git ansible; else cd ansible && git pull origin master; fi'
             sh 'cp packages/font-${CODE_VERSION}.tgz ansible/roles/front/files/'
         }
     }
