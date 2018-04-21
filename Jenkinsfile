@@ -56,6 +56,11 @@ pipeline {
       when {
         branch 'master'
       }
+      agent {
+        docker {
+            image 'williamyeh/ansible:alpine3'
+        }
+      }
       steps {
         sh 'cd ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
       }
