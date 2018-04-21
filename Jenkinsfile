@@ -62,6 +62,7 @@ pipeline {
         }
       }
       steps {
+        sh 'echo $(pwd)'
         sh 'cd ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
       }
     }
