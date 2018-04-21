@@ -45,11 +45,11 @@ pipeline {
       }
       agent {
         docker {
-            image 'williamyeh/ansible'
+            image 'williamyeh/ansible:alpine3'
         }
       }
       steps {
-        sh 'cd ansible && ansible-playbook -i hosts/development site.yml'
+        sh 'cd ansible && ansible-playbook --tags "setup,front" -i hosts/development site.yml'
       }
     }
     stage('Deploy to Production') {
