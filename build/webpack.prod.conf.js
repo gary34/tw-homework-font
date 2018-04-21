@@ -32,7 +32,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env,
       API_URL: config.api_url,
-      CODE_VERSION: process.env.CODE_VERSION
+      CODE_VERSION: JSON.stringify(process.env.CODE_VERSION)
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
