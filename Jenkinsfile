@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+      CODE_VERSION = sh('git rev-parse --short HEAD').trim()
+  }
   stages {
     stage('Build') {
       agent {
@@ -9,6 +12,10 @@ pipeline {
         }
       }
       steps {
+         
+        if (env.BRANCH_NAME == 'master'){
+            environment name: 'API_URL', value: 'http://xxxxxxx.x.xx'
+        }
         sh 'npm install --loglevel=error'
         sh 'npm run build --loglevel=error' 
       }
@@ -21,11 +28,11 @@ pipeline {
     stage('Package') {
         steps {
             sh 'mkdir -p packages'
-            sh 'v=$(git rev-parse --short HEAD) tar -czf packages/font-${v}.tgz dist'
+            sh 'tar -czf packages/font-${CODE_VERSION}.tgz dist'
             echo 'Ok'
         }
     }
-    stage('Deploy Development') {
+    stage('Deploy to Development') {
       when {
         branch 'develop'
       }
@@ -33,7 +40,7 @@ pipeline {
         sh 'echo \'deploy to development\''
       }
     }
-    stage('Deploy Production') {
+    stage('Deploy to Production') {
       when {
         branch 'master'
       }
@@ -44,9 +51,7 @@ pipeline {
   }
   post {
     success {
-        mail to: 'pugood@126.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+        sh "echo to notify some body"
     }
 }
 }

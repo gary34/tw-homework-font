@@ -5,6 +5,7 @@
 const path = require('path')
 
 module.exports = {
+  api_url: JSON.stringify(process.env.API_URL || 'http://ip-api.com/json'),
   dev: {
 
     // Paths
