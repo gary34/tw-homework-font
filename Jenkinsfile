@@ -35,15 +35,8 @@ pipeline {
     }
     stage('Prepare Deploy') {
         steps {
-            script {
-                def exists = fileExists 'ansible'
-                if (!exists){
-                    new File('ansible').mkdir()
-                }
-                dir ('ansible') {
-                    git url: 'https://gitee.com/gary34/tw-homework-ansible.git' ansible
-                }
-            }
+            sh 'mkdir -p ansible'
+            git url: 'https://gitee.com/gary34/tw-homework-ansible.git' ansible
             sh 'cp packages/font-${CODE_VERSION}.tgz ansible/roles/front/files/'
         }
     }
