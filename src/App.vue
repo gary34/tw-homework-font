@@ -38,7 +38,7 @@ export default {
     padding: 5em 0;
     height: 200px;
     color: #fff;
-    background: url(https://www.thoughtworks.cn/assets/images/general/banner.png) no-repeat center center #295448;
+    background: url(https://dynamic.thoughtworks.com/landing_pages/full_width_image_desktop-03801d8bdff4556807329690ead6287f.png) no-repeat center center #295448;
     text-align: center;
 }
 
