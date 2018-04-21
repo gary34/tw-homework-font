@@ -56,13 +56,13 @@ pipeline {
       when {
         branch 'master'
       }
-      agent {
-        docker {
-            image 'williamyeh/ansible:alpine3'
-        }
-      }
+    //   agent {
+    //     docker {
+    //         image 'williamyeh/ansible:alpine3'
+    //     }
+    //   }
       steps {
-        sh 'echo $(pwd)'
+        // sh 'echo $(pwd)'
         sh 'cd ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
       }
     }
