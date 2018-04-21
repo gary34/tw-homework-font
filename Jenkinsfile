@@ -61,7 +61,7 @@ pipeline {
   }
   post {
     success {
-        sh "echo to notify some body"
+        sh "Please visite to http://f.iyomi.me:8999"
     }
 }
 }
