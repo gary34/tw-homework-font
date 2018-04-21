@@ -65,7 +65,7 @@ pipeline {
     //   }
       steps {
         // sh 'echo $(pwd)'
-        sh 'cd ansible && chmod 600 id_rsa-ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
+        sh 'cd tw-homework-ansible-master && chmod 600 id_rsa-ansible && ansible-playbook --tags "setup,front" -i hosts/production site.yml'
       }
     }
   }
