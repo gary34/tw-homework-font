@@ -46,7 +46,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh 'cd tw-homework-ansible-master && ansible-playbook --tags "setup,front" -i hosts/development site.yml'
+        sh 'cd tw-homework-ansible-master && chmod 600 id_rsa-ansible && ansible-playbook --tags "setup,front" -i hosts/development site.yml'
       }
     }
     stage('Deploy to Production') {
@@ -60,8 +60,12 @@ pipeline {
     }
   }
   post {
-    success {
-        sh "echo 'Please visite to http://f.iyomi.me:8999'"
+
+        success {
+            sh "echo 'Please visite to http://f.iyomi.me:8999'"
+        }
+        cleanup {
+            sh 'rm -rf tw-homework-ansible-master master.zip'
+        }
     }
-}
 }
